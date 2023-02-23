@@ -137,7 +137,7 @@ publish/
 # Publish Web Output
 *.[Pp]ublish.xml
 *.azurePubxml
-# TODO: Comment the next line if you want to checkin your web deploy settings 
+# TODO: Comment the next line if you want to checkin your web deploy settings
 # but database connection strings (with potential passwords) will be unencrypted
 *.pubxml
 *.publishproj
@@ -239,3 +239,6 @@ _Pvt_Extensions
 /1-env-lot-soap.xml
 /1-con-lot-soap.xml
 /src/*.DotSettings
+
+# VSCode folders
+.vscode
