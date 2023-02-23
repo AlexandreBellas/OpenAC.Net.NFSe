@@ -3,7 +3,7 @@ using System;
 namespace OpenAC.Net.NFSe.Providers
 {
     /// <summary>
-    /// Interface que define os métodos que os serviços de NFSe precisam ter.
+    /// Interface que define os mÃ©todos que os serviÃ§os de NFSe precisam ter.
     /// </summary>
     public interface IServiceClient : IDisposable
     {

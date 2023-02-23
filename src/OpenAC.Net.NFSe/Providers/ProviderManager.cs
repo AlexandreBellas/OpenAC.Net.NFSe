@@ -44,7 +44,7 @@ using OpenAC.Net.NFSe.Providers.Thema;
 namespace OpenAC.Net.NFSe.Providers
 {
     /// <summary>
-    /// Classe respons·vel por criar uma nova instancia do provedor
+    /// Classe respons√°vel por criar uma nova inst√¢ncia do provedor
     /// </summary>
     public static class ProviderManager
     {
@@ -131,7 +131,7 @@ namespace OpenAC.Net.NFSe.Providers
         /// <param name="path">Caminho para salvar o arquivo</param>
         public static void Save(string path = "Municipios.nfse")
         {
-            Guard.Against<ArgumentNullException>(path == null, "Path invalido.");
+            Guard.Against<ArgumentNullException>(path == null, "Path inv√°lido.");
 
             if (File.Exists(path)) File.Delete(path);
 
@@ -181,7 +181,7 @@ namespace OpenAC.Net.NFSe.Providers
                 buffer = File.ReadAllBytes(path);
             }
 
-            Guard.Against<ArgumentException>(buffer == null, "Arquivo de cidades n„o encontrado");
+            Guard.Against<ArgumentException>(buffer == null, "Arquivo de cidades n√£o encontrado");
 
             using var stream = new MemoryStream(buffer);
             Load(stream, clean);
@@ -194,7 +194,7 @@ namespace OpenAC.Net.NFSe.Providers
         /// <param name="clean">if set to <c>true</c> [clean].</param>
         public static void Load(Stream stream, bool clean = true)
         {
-            Guard.Against<ArgumentException>(stream == null, "Arquivo de cidades n„o encontrado");
+            Guard.Against<ArgumentException>(stream == null, "Arquivo de cidades n√£o encontrado");
 
             var municipiosNFSe = MunicipiosNFSe.Load(stream);
             if (clean) Municipios.Clear();
@@ -202,18 +202,18 @@ namespace OpenAC.Net.NFSe.Providers
         }
 
         /// <summary>
-        /// Retorna o provedor para o municipio nas configuraÁıes informadas.
+        /// Retorna o provedor para o municipio nas configura√ß√µes informadas.
         /// </summary>
-        /// <param name="config">A configuraÁ„o.</param>
+        /// <param name="config">A configura√ß√£o.</param>
         /// <returns>Provedor NFSe.</returns>
         public static ProviderBase GetProvider(ConfigNFSe config)
         {
             var municipio = Municipios.SingleOrDefault(x => x.Codigo == config.WebServices.CodigoMunicipio);
-            Guard.Against<OpenException>(municipio == null, "Provedor para esta cidade n„o implementado ou n„o especificado!");
+            Guard.Against<OpenException>(municipio == null, "Provedor para esta cidade n√£o implementado ou n√£o especificado!");
 
             // ReSharper disable once PossibleNullReferenceException
             var providerType = Providers[municipio.Provedor];
-            Guard.Against<OpenException>(providerType == null, "Provedor n„o encontrado!");
+            Guard.Against<OpenException>(providerType == null, "Provedor n√£o encontrado!");
             Guard.Against<OpenException>(!CheckBaseType(providerType), "Classe base do provedor incorreta!");
 
             // ReSharper disable once AssignNullToNotNullAttribute

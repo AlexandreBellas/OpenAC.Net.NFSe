@@ -99,7 +99,7 @@ namespace OpenAC.Net.NFSe.Configuracao
                 if (codigoMunicipio == value) return;
 
                 var municipio = ProviderManager.Municipios.SingleOrDefault(x => x.Codigo == value);
-                Guard.Against<ArgumentException>(municipio == null, "MunicÌpio n„o cadastrado.");
+                Guard.Against<ArgumentException>(municipio == null, "Munic√≠pio n√£o cadastrado.");
 
                 codigoMunicipio = value;
                 Municipio = municipio.Nome;

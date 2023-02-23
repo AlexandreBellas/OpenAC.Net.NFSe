@@ -55,9 +55,9 @@ namespace OpenAC.Net.NFSe.Configuracao
         #region Properties
 
         /// <summary>
-        /// Gets the prestado padr„o.
+        /// Gets the prestado padr√£o.
         /// </summary>
-        /// <value>The prestado padr„o.</value>
+        /// <value>The prestado padr√£o.</value>
         public DadosPrestador PrestadorPadrao { get; set; }
 
         #endregion Properties
