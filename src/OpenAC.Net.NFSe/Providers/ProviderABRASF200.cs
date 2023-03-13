@@ -1351,6 +1351,8 @@ namespace OpenAC.Net.NFSe.Providers
 
             retornoWebservice.ProximaPagina = listaNfse.ElementAnyNs("ProximaPagina")?.GetValue<int>() ?? 0;
             retornoWebservice.Notas = notasServico.ToArray();
+
+            retornoWebservice.Sucesso = retornoWebservice.Notas.Length > 0;
         }
 
         /// <inheritdoc />
