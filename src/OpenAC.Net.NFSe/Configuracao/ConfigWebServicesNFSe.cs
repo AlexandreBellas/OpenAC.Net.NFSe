@@ -58,13 +58,14 @@ namespace OpenAC.Net.NFSe.Configuracao
             FraseSecreta = string.Empty;
             ChaveAcesso = string.Empty;
 
-#if NETCORE
+            //#if NETCORE
             Protocolos = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
-#else
-            Protocolos = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls |
-                         SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+            //#else
+            //            Protocolos = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls |
+            //                         SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 
-#endif
+            //#endif
+
         }
 
         #endregion Constructor
