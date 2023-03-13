@@ -53,6 +53,7 @@ namespace OpenAC.Net.NFSe.Nota
             NomeFantasia = string.Empty;
             Endereco = new Endereco();
             DadosContato = new DadosContato();
+            Token = string.Empty;
         }
 
         #endregion Constructors
@@ -72,6 +73,8 @@ namespace OpenAC.Net.NFSe.Nota
         public Endereco Endereco { get; }
 
         public DadosContato DadosContato { get; }
+
+        public string Token { get; set; }
 
         #endregion Propriedades
     }
