@@ -37,6 +37,7 @@ Biblioteca para emissão e trasmissão de NFSe (Nota Fiscal de Serviço Eletrôn
 - São Paulo
 - SIAPNet- 
 - SimplISS
+- SimplISS v2
 - SmarAPD ABRASAF
 - SystemPro
 - WebISS
@@ -54,12 +55,16 @@ Biblioteca para emissão e trasmissão de NFSe (Nota Fiscal de Serviço Eletrôn
 - DSFSJC
 - Fisco
 - FissLex
+- IPM v2 ABRASAF
 - ISSNet
 - Sigiss
+- Sigiss v2
 - Pvh
 - Mitra
 - Porto Alegre
 - Pronim v2
+- Pronim v203
 - Sintese
 - SpeedGov
+- Tiplan v2
 - Vitoria
