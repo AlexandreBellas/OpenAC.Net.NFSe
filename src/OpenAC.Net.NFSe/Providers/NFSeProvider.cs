@@ -8,7 +8,7 @@
 // ***********************************************************************
 // <copyright file="NFSeProvider.cs" company="OpenAC .Net">
 //		        		   The MIT License (MIT)
-//	     		    Copyright (c) 2014 - 2022 Projeto OpenAC .Net
+//	     		    Copyright (c) 2014 - 2023 Projeto OpenAC .Net
 //
 //	 Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the "Software"),
@@ -32,114 +32,101 @@
 using System.ComponentModel;
 using OpenAC.Net.DFe.Core.Attributes;
 
-namespace OpenAC.Net.NFSe.Providers
+namespace OpenAC.Net.NFSe.Providers;
+
+public enum NFSeProvider : sbyte
 {
-    public enum NFSeProvider : sbyte
-    {
-        Nenhum = -1,
+    Nenhum = -1,
 
-        Americana = 29,
+    Americana = 29,
 
-        Abaco = 0,
+    Abaco = 0,
 
-        ABase = 39,
+    ABase = 39,
 
-        AssessorPublico = 33,
+    AssessorPublico = 33,
 
-        Betha = 1,
+    Betha = 1,
 
-        [Description("Betha v2")]
-        Betha2 = 2,
+    BHISS = 8,
 
-        BHISS = 8,
+    Citta = 28,
 
-        CITTA = 28,
+    Coplan = 3,
 
-        Coplan = 3,
+    ISSCuritiba = 26,
 
-        Curitiba = 26,
+    DBSeller = 19,
 
-        DBSeller = 19,
+    ISSDSF = 4,
 
-        DSF = 4,
+    DSF = 38,
 
-        DSFSJC = 38,
+    Equiplano = 15,
 
-        Equiplano = 15,
+    Fiorilli = 16,
 
-        Fiorilli = 16,
+    Fisco = 42,
 
-        Fisco = 42,
+    FissLex = 12,
 
-        FissLex = 12,
+    Ginfes = 5,
 
-        Ginfes = 5,
+    IPM = 36,
 
-        IPM = 36,
+    ISSe = 23,
 
-        ISSe = 23,
+    ISSNet = 18,
 
-        ISSNet = 18,
+    Mitra = 34,
 
-        Mitra = 34,
+    [Description("NFe Cidades")]
+    NFeCidades = 6,
 
-        [Description("NFe Cidades")]
-        NFeCidades = 6,
+    [Description("Nota Carioca")]
+    ISSRio = 7,
 
-        [Description("Nota Carioca")]
-        NotaCarioca = 7,
+    Pronim = 17,
 
-        [Description("Pronim v2")]
-        Pronim2 = 17,
+    [Description("São Paulo")]
+    ISSSaoPaulo = 9,
 
-        [Description("Pronim v2.03")]
-        Pronim203 = 43,
+    SmarAPD = 14,
 
-        [Description("São Paulo")]
-        SaoPaulo = 9,
+    SiapNet = 35,
 
-        [Description("SmarAPD ABRASF")]
-        SmarAPDABRASF = 14,
+    SigISS = 20,
 
-        SIAPNet = 35,
+    SimplISS = 24,
 
-        Sigiss = 20,
+    Sintese = 37,
 
-        Sigiss2 = 44,
+    SpeedGov = 25,
 
-        SimplISS = 24,
+    SystemPro = 27,
 
-        Sintese = 37,
+    Conam = 21,
 
-        SpeedGov = 25,
+    [Description("Goiania")]
+    ISSGoiania = 22,
 
-        SystemPro = 27,
+    SigISSWeb = 30,
 
-        [Description("CONAM")]
-        Conam = 21,
+    [Description("RLZ Informática")]
+    RLZ = 31,
 
-        [Description("Goiania")]
-        Goiania = 22,
+    Tiplan = 46,
 
-        SigissWeb = 30,
+    [Description("Vitoria")]
+    ISSVitoria = 13,
 
-        [Description("RLZ Informática")]
-        RLZ = 31,
+    WebIss = 10,
 
-        [Description("Vitoria")]
-        Vitoria = 13,
+    [Description("Porto Velho")]
+    IISPortoVelho = 32,
 
-        WebIss = 10,
+    [Description("Metro Web")]
+    MetropolisWeb = 40,
 
-        [Description("WebIss v2")]
-        WebIss2 = 11,
-
-        [Description("Porto Velho")]
-        PVH = 32,
-
-        [Description("Metro Web")]
-        MetropolisWeb = 40,
-
-        Thema = 41
-    }
+    Thema = 41
 }

@@ -4,7 +4,7 @@
 // Created          : 01-11-2023
 //
 // Last Modified By : Felipe Silveira (Transis Software)
-// Last Modified On : 02-27-2023
+// Last Modified On : 03-15-2023
 // ***********************************************************************
 // <copyright file="ProviderFisco.cs" company="OpenAC .Net">
 //		        		   The MIT License (MIT)
@@ -38,150 +38,35 @@ using System.Xml;
 using System.Xml.Linq;
 using OpenAC.Net.Core.Extensions;
 using OpenAC.Net.DFe.Core;
+using OpenAC.Net.DFe.Core.Serializer;
 using OpenAC.Net.NFSe.Configuracao;
 using OpenAC.Net.NFSe.Nota;
 
-namespace OpenAC.Net.NFSe.Providers
+namespace OpenAC.Net.NFSe.Providers;
+
+internal sealed class ProviderFisco : ProviderABRASF203
 {
-    // ReSharper disable once InconsistentNaming
-    internal sealed class ProviderFisco : ProviderABRASF
+    #region Fields
+
+    private static readonly string[] escapedCharacters = { "&amp;", "&lt;", "&gt;", "&quot;", "&apos;" };
+    private static readonly string[] unescapedCharacters = { "&", "<", ">", "\"", "\'" };
+
+    #endregion Fields
+
+    #region Constructors
+
+    public ProviderFisco(ConfigNFSe config, OpenMunicipioNFSe municipio) : base(config, municipio)
     {
-        #region Fields
-
-        private static readonly string[] escapedCharacters = { "&amp;", "&lt;", "&gt;", "&quot;", "&apos;" };
-        private static readonly string[] unescapedCharacters = { "&", "<", ">", "\"", "\'" };
-
-        #endregion Fields
-
-        #region Constructors
-
-        public ProviderFisco(ConfigNFSe config, OpenMunicipioNFSe municipio) : base(config, municipio)
-        {
-            Name = "Fisco";
-        }
-
-        #endregion Constructors
-
-        #region Services
-
-        protected override void PrepararEnviar(RetornoEnviar retornoWebservice, NotaServicoCollection notas)
-        {
-            var xmlLoteRps = new StringBuilder();
-
-            foreach (var nota in notas)
-            {
-                var xmlRps = WriteXmlRps(nota, false, false);
-                xmlLoteRps.Append(xmlRps);
-                GravarRpsEmDisco(xmlRps, $"Rps-{nota.IdentificacaoRps.DataEmissao:yyyyMMdd}-{nota.IdentificacaoRps.Numero}.xml", nota.IdentificacaoRps.DataEmissao);
-            }
-
-            var xmlLote = new StringBuilder();
-            xmlLote.Append("<EnviarLoteRpsEnvio>");
-            xmlLote.Append($"<LoteRps Id=\"L{retornoWebservice.Lote}\">");
-            xmlLote.Append($"<NumeroLote>{retornoWebservice.Lote}</NumeroLote>");
-            xmlLote.Append($"<Cnpj>{Configuracoes.PrestadorPadrao.CpfCnpj.ZeroFill(14)}</Cnpj>");
-            xmlLote.Append($"<InscricaoMunicipal>{Configuracoes.PrestadorPadrao.InscricaoMunicipal}</InscricaoMunicipal>");
-            xmlLote.Append($"<QuantidadeRps>{notas.Count}</QuantidadeRps>");
-            xmlLote.Append("<ListaRps>");
-            xmlLote.Append(xmlLoteRps);
-            xmlLote.Append("</ListaRps>");
-            xmlLote.Append("</LoteRps>");
-            xmlLote.Append("</EnviarLoteRpsEnvio>");
-            retornoWebservice.XmlEnvio = xmlLote.ToString();
-        }
-
-        protected override void TratarRetornoEnviar(RetornoEnviar retornoWebservice, NotaServicoCollection notas)
-        {
-            // Analisa mensagem de retorno
-            var xmlRet = XDocument.Parse(AjustarRetorno(retornoWebservice.XmlRetorno));
-
-            MensagemErro(retornoWebservice, xmlRet.Root);
-            if (retornoWebservice.Erros.Count > 0) return;
-
-            retornoWebservice.Lote = xmlRet?.ElementAnyNs("NumeroLote")?.GetValue<int>() ?? 0;
-            retornoWebservice.Data = xmlRet?.ElementAnyNs("DataRecebimento")?.GetValue<DateTime>() ?? DateTime.MinValue;
-            retornoWebservice.Protocolo = xmlRet?.ElementAnyNs("Protocolo")?.GetValue<string>() ?? string.Empty;
-            retornoWebservice.Sucesso = retornoWebservice.Lote > 0;
-
-            if (!retornoWebservice.Sucesso) return;
-
-            // ReSharper disable once SuggestVarOrType_SimpleTypes
-            foreach (NotaServico nota in notas)
-            {
-                nota.NumeroLote = retornoWebservice.Lote;
-            }
-        }
-
-        protected override void PrepararEnviarSincrono(RetornoEnviar retornoWebservice, NotaServicoCollection notas)
-        {
-            var xmlLoteRps = new StringBuilder();
-
-            foreach (var nota in notas)
-            {
-                var xmlRps = WriteXmlRps(nota, false, false);
-                xmlLoteRps.Append(xmlRps);
-                GravarRpsEmDisco(xmlRps, $"Rps-{nota.IdentificacaoRps.DataEmissao:yyyyMMdd}-{nota.IdentificacaoRps.Numero}.xml", nota.IdentificacaoRps.DataEmissao);
-            }
-            
-            var xmlLote = new StringBuilder();
-            xmlLote.Append("<recepcionarLoteRpsSincrono xmlns=\"https://www.fisco.net.br/wsnfseabrasf/ServicosNFSEAbrasf.asmx\">");
-            xmlLote.Append("<xml>");
-            xmlLote.Append(xmlLoteRps);
-            xmlLote.Append("</xml>");
-            xmlLote.Append("</recepcionarLoteRpsSincrono>");
-            retornoWebservice.XmlEnvio = xmlLote.ToString();
-        }
-
-        protected override void TratarRetornoConsultarSituacao(RetornoConsultarSituacao retornoWebservice)
-        {
-            // Analisa mensagem de retorno
-            var xmlRet = XDocument.Parse(AjustarRetorno(retornoWebservice.XmlRetorno));
-
-            retornoWebservice.Lote = xmlRet?.ElementAnyNs("NumeroLote")?.GetValue<int>() ?? 0;
-            retornoWebservice.Situacao = xmlRet?.ElementAnyNs("Situacao")?.GetValue<string>() ?? "0";
-            retornoWebservice.Sucesso = !retornoWebservice.Erros.Any();
-        } 
-
-        protected override void AssinarEnviarSincrono(RetornoEnviar retornoWebservice)
-        {
-            //NAO PRECISA ASSINAR
-            //retornoWebservice.XmlEnvio = XmlSigning.AssinarXml(retornoWebservice.XmlEnvio, "EnviarLoteRpsSincronoEnvio", "LoteRps", Certificado);
-        }
-
-        protected override bool PrecisaValidarSchema(TipoUrl tipo)
-        {
-            return false;
-        }
-
-        protected override void AssinarCancelarNFSe(RetornoCancelar retornoWebservice)
-        {
-            retornoWebservice.XmlEnvio = XmlSigning.AssinarXml(retornoWebservice.XmlEnvio, "Pedido", "InfPedidoCancelamento", Certificado);
-        }
-
-        #endregion Services
-
-        #region Methods
-
-        private static string AjustarRetorno(string retorno)
-        {
-            for (var i = 0; i < escapedCharacters.Length; i++)
-            {
-                retorno = retorno.Replace(escapedCharacters[i], unescapedCharacters[i]);
-            }
-            retorno = retorno.Replace("xmlns=\"\"", "");
-            return retorno;
-        }
-
-        protected override IServiceClient GetClient(TipoUrl tipo)
-        {
-            return new FiscoServiceClient(this, tipo);
-        }
-
-        protected override string GetSchema(TipoUrl tipo)
-        {
-            return "nfse.xsd";
-        }
-
-        #endregion Methods
+        Name = "Fisco";
     }
+
+    #endregion Constructors
+
+    #region Methods
+
+    protected override IServiceClient GetClient(TipoUrl tipo) => new FiscoServiceClient(this, tipo);
+
+    protected override string GetSchema(TipoUrl tipo) => "nfse.xsd";
+
+    #endregion Methods
 }
