@@ -81,6 +81,9 @@ namespace OpenAC.Net.NFSe.Providers
 
         ISSNet = 18,
 
+        [Description("iiBrasil")]
+        iiBrasil = 43,
+
         Mitra = 34,
 
         [Description("NFe Cidades")]

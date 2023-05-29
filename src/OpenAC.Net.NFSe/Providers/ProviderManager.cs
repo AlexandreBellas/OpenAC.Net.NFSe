@@ -75,6 +75,7 @@ namespace OpenAC.Net.NFSe.Providers
                 {NFSeProvider.FissLex, typeof(ProviderFissLex)},
                 {NFSeProvider.Ginfes, typeof(ProviderGinfes)},
                 {NFSeProvider.Goiania, typeof(ProviderGoiania)},
+                {NFSeProvider.iiBrasil, typeof(ProvideriiBrasil)},
                 {NFSeProvider.IPM, typeof(ProviderIPM)},
                 {NFSeProvider.ISSe, typeof(ProviderISSe)},
                 {NFSeProvider.ISSNet, typeof(ProviderISSNet)},

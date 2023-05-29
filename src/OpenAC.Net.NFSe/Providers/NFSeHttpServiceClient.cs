@@ -181,10 +181,19 @@ namespace OpenAC.Net.NFSe.Providers
                     streamWriter.Flush();
                 }
 
+                Console.WriteLine(EnvelopeEnvio);
+                // Console.WriteLine(request.Headers.Get("SOAPAction"));
+                // Console.WriteLine("pamonha");
                 var response = request.GetResponse();
                 EnvelopeRetorno = GetResponse(response);
+                // Console.WriteLine("lele da cuca");
+                // Console.WriteLine(EnvelopeRetorno);
 
                 GravarSoap(EnvelopeRetorno, $"{DateTime.Now:yyyyMMddssfff}_{PrefixoResposta}_retorno.xml");
+            }
+            catch (WebException ex) {
+                Console.WriteLine(GetResponse(ex.Response));
+                throw new OpenDFeCommunicationException(ex.Message, ex);
             }
             catch (Exception ex) when (ex is not OpenDFeCommunicationException)
             {
