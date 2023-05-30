@@ -7537,6 +7537,7 @@
       <Nome>Limeira</Nome>
       <UF>SP</UF>
       <Provedor>iiBrasil</Provedor>
+      <Versao>2.04</Versao>
       <UrlHomologacao>
         <Item>
           <TipoUrl>Enviar</TipoUrl>

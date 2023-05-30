@@ -29,7 +29,7 @@
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageId>OpenAC.Net.NFSe</PackageId>
-	</PropertyGroup>	
+	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
@@ -39,13 +39,13 @@
 		<PackageReference Include="OpenAC.Net.Core" Version="1.5.0.1" />
 		<PackageReference Include="OpenAC.Net.DFe.Core" Version="1.5.0.2" />
 		<PackageReference Include="System.ServiceModel.Http" Version="4.10.2" />
-		<PackageReference Include="System.ServiceModel.Primitives" Version="4.10.2" />		
+		<PackageReference Include="System.ServiceModel.Primitives" Version="4.10.2" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net462' or '$(TargetFramework)' == 'net470' or '$(TargetFramework)' == 'net48'">
 		<Reference Include="System.Drawing" />
 	</ItemGroup>
-	
+
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net462' or '$(TargetFramework)' == 'net470' or '$(TargetFramework)' == 'net48' or '$(TargetFramework)' == 'netstandard2.0'">
 		<PackageReference Include="System.Net.Http" Version="4.3.4" />
 	</ItemGroup>
@@ -124,6 +124,10 @@
 			<Pack>True</Pack>
 			<PackagePath>content\Schemas\IPM</PackagePath>
 		</None>
+		<None Include="Schemas\iiBrasil\**\*.*">
+			<Pack>True</Pack>
+			<PackagePath>content\Schemas\iiBrasil</PackagePath>
+		</None>
 		<None Include="Schemas\ISSCuritiba\**\*.*">
 			<Pack>True</Pack>
 			<PackagePath>content\Schemas\ISSCuritiba</PackagePath>
@@ -159,11 +163,11 @@
 		<None Include="Schemas\ISSVitoria\**\*.*">
 			<Pack>True</Pack>
 			<PackagePath>content\Schemas\ISSVitoria</PackagePath>
-		</None>		
+		</None>
 		<None Include="Schemas\MetropolisWeb\**\*.*">
 			<Pack>True</Pack>
 			<PackagePath>content\Schemas\MetropolisWeb</PackagePath>
-		</None>		
+		</None>
 		<None Include="Schemas\Mitra\**\*.*">
 			<Pack>True</Pack>
 			<PackagePath>content\Schemas\Mitra</PackagePath>
@@ -171,7 +175,7 @@
 		<None Include="Schemas\NFeCidades\**\*.*">
 			<Pack>True</Pack>
 			<PackagePath>content\Schemas\NFeCidades</PackagePath>
-		</None>		
+		</None>
 		<None Include="Schemas\Pronim\**\*.*">
 			<Pack>True</Pack>
 			<PackagePath>content\Schemas\Pronim</PackagePath>
@@ -191,7 +195,7 @@
 		<None Include="Schemas\SigISSWeb\**\*.*">
 			<Pack>True</Pack>
 			<PackagePath>content\Schemas\SigISSWeb</PackagePath>
-		</None>		
+		</None>
 		<None Include="Schemas\SimplISS\**\*.*">
 			<Pack>True</Pack>
 			<PackagePath>content\Schemas\SimplISS</PackagePath>
@@ -199,7 +203,7 @@
 		<None Include="Schemas\Sintese\**\*.*">
 			<Pack>True</Pack>
 			<PackagePath>content\Schemas\Sintese</PackagePath>
-		</None>		
+		</None>
 		<None Include="Schemas\SmarAPD\**\*.*">
 			<Pack>True</Pack>
 			<PackagePath>content\Schemas\SmarAPD</PackagePath>
@@ -219,17 +223,17 @@
 		<None Include="Schemas\Tiplan\**\*.*">
 			<Pack>True</Pack>
 			<PackagePath>content\Schemas\Tiplan</PackagePath>
-		</None>		
+		</None>
 		<None Include="Schemas\WebISS\**\*.*">
 			<Pack>True</Pack>
 			<PackagePath>content\Schemas\WebISS</PackagePath>
-		</None>				
+		</None>
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<None Remove="Resources\Municipios.nfse" />
 		<EmbeddedResource Include="Resources\Municipios.nfse" />
-		
+
 		<None Update="Schemas\Abaco\**\*.*">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -278,12 +282,15 @@
 		<None Update="Schemas\IPM\**\*.*">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="Schemas\iiBrasil\**\*.*">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="Schemas\ISSCuritiba\**\*.*">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="Schemas\ISSDSF\**\*.*">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>		
+		</None>
 		<None Update="Schemas\ISSe\**\*.*">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -307,7 +314,7 @@
 		</None>
 		<None Update="Schemas\ISSVitoria\**\*.*">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>		
+		</None>
 		<None Update="Schemas\MetropolisWeb\**\*.*">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -316,13 +323,13 @@
 		</None>
 		<None Update="Schemas\NFeCidades\**\*.*">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>		
+		</None>
 		<None Update="Schemas\Pronim\**\*.*">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="Schemas\RLZ\**\*.*">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>	
+		</None>
 		<None Update="Schemas\SIAPNet\**\*.*">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -349,13 +356,13 @@
 		</None>
 		<None Update="Schemas\Thema\**\*.*">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>	
+		</None>
 		<None Update="Schemas\Tiplan\**\*.*">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="Schemas\WebISS\**\*.*">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>				
+		</None>
 	</ItemGroup>
 
 </Project>

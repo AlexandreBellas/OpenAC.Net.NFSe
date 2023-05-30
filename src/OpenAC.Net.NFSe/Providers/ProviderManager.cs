@@ -68,7 +68,7 @@ public static class ProviderManager
             {NFSeProvider.Fisco, new Dictionary<VersaoNFSe, Type> {{VersaoNFSe.ve203, typeof(ProviderFisco)}}},
             {NFSeProvider.FissLex, new Dictionary<VersaoNFSe, Type> {{VersaoNFSe.ve100, typeof(ProviderFissLex)}}},
             {NFSeProvider.Ginfes, new Dictionary<VersaoNFSe, Type> {{VersaoNFSe.ve100, typeof(ProviderGinfes)}}},
-            {NFSeProvider.iiBrasil, new Dictionary<VersaoNFSe, Type> {{VersaoNFSe.ve100, typeof(ProvideriiBrasil)}}},
+            {NFSeProvider.iiBrasil, new Dictionary<VersaoNFSe, Type> {{VersaoNFSe.ve204, typeof(ProvideriiBrasil)}}},
             {NFSeProvider.IPM, new Dictionary<VersaoNFSe, Type> {{VersaoNFSe.ve100, typeof(ProviderIPM100)}, {VersaoNFSe.ve101, typeof(ProviderIPM101)}}},
             {NFSeProvider.ISSCuritiba, new Dictionary<VersaoNFSe, Type> {{VersaoNFSe.ve100, typeof(ProviderISSCuritiba)}}},
             {NFSeProvider.ISSDSF, new Dictionary<VersaoNFSe, Type> {{VersaoNFSe.ve100, typeof(ProviderISSDSF)}}},

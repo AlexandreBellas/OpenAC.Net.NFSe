@@ -48,7 +48,7 @@ namespace OpenAC.Net.NFSe.Providers
         public ProvideriiBrasil(ConfigNFSe config, OpenMunicipioNFSe municipio) : base(config, municipio)
         {
             Name = "iiBrasil";
-            Versao = "2.04";
+            Versao = VersaoNFSe.ve204;
         }
 
         #endregion Constructors
@@ -92,6 +92,8 @@ namespace OpenAC.Net.NFSe.Providers
         #endregion Services
 
         protected override IServiceClient GetClient(TipoUrl tipo) => new iiBrasilServiceClient(this, tipo);
+
+        protected override string GetSchema(TipoUrl tipo) => "schema_nfse_v1_IIBR.xsd";
 
         #endregion Protected Methods
 
